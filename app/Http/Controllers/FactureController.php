@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace App\Http\Controllers;
 
@@ -9,7 +9,6 @@ class FactureController extends Controller
 {
     public function index()
     {
-        $factures = Facture::all();
-        return view('factures.index', compact('factures'));
+        return view('factures/index');
     }
 }
