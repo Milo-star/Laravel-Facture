@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <h1>Gestionnaire de clients - factures</h1>
 <h2>Mes Factures</h2>
 <p>Dans cette section, vous pouvez voir la liste de vos factures clients</p>
@@ -38,3 +39,18 @@
         @endforeach
     </tbody>
 </table>
+=======
+<title>Gestionnaire Client - Accueil</title>
+@section('content')
+    <div>
+        <h2>Clients</h2>
+        <a href="#">Afficher tous les clients</a>
+        <a href="#">Créer un client</a>
+    </div>
+    <div>
+        <h2>Factures</h2>
+        <a href="#">Afficher toute les factures</a>
+        <a href="#">Créer une facture</a>
+    </div>
+@endsection
+>>>>>>> 99be8f36e05529b1801e4660daea242dc586082c
