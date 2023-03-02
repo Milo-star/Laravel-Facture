@@ -13,8 +13,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [App\Http\Controllers\FactureController::class, 'index']);
 
-Route::get('/factures', [App\Http\Controllers\FactureController::class, 'index']);
+Route::get('/factures/index', [App\Http\Controllers\FactureController::class, 'allClients']);
+
+Route::get('/factures/edit/{id}', [App\Http\Controllers\FactureController::class, 'edit'])->name('factures.edit');
+
+Route::put('/factures/{id}', [App\Http\Controllers\FactureController::class, 'update'])->name('factures.update');
