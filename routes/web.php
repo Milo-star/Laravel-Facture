@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\FactureController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,7 +19,7 @@ Route::get('/', [App\Http\Controllers\FactureController::class, 'index']);
 // Factures
 Route::get('/factures/index', [App\Http\Controllers\FactureController::class, 'allFactures'])-> name('factures.index');
 Route::get('/factures/edit/{id}', [App\Http\Controllers\FactureController::class, 'edit'])->name('factures.edit');
-Route::put('/factures/{id}', [App\Http\Controllers\FactureController::class, 'update'])->name('factures.update');
+Route::patch('/factures/{facture}', [FactureController::class, 'update']);
 Route::delete('/factures/{id}', [App\Http\Controllers\FactureController::class, 'destroy'])->name('factures.destroy');
 Route::get('/factures/create', [App\Http\Controllers\FactureController::class, 'create'])->name('factures.create');
 Route::post('/factures/store', [App\Http\Controllers\FactureController::class, 'store'])->name('factures.store');
