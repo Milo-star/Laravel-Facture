@@ -28,7 +28,7 @@
             <td class="px-4 py-2 text-center">{{ $client->mail }}</td>
             <td class="px-4 py-2 text-center">{{ $client->adress }}</td>
             <td class="px-4 py-2 text-center">{{ $client->tva }}</td>
-            <td class="px-4 py-2 text-center text-red-800">{{ $client->Invoice }}</td>
+            <td class="px-4 py-2 text-center text-red-800"><a href="{{ route('clients.show', ['client' => $client->id]) }}">{{ $client->Invoice }}</a></td>
             <td class="px-4 py-2 text-center text-red-800"><a href="{{ route('clients.edit', $client->id) }}">Modifier</a></td>
             <td>
             <form action="{{ route('clients.destroy', $client->id) }}" method="POST">

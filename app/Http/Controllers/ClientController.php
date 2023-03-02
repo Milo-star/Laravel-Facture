@@ -18,6 +18,13 @@ class ClientController extends Controller
         return view('clients.index', ['clients' => $clients]);
     }
 
+    public function show(Client $client)
+    {
+        $client = Client::findOrFail($client->id);
+
+        return view('clients.show', compact('client'));
+    }
+
     public function edit($id)
     {
         $client = Client::find($id);
@@ -81,4 +88,5 @@ class ClientController extends Controller
 
         return redirect()->route('clients.index')->with('success', 'Le client a été crée !');
     }
+
 }
