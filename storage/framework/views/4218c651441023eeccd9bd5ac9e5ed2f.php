@@ -1,4 +1,5 @@
 <?php echo app('Illuminate\Foundation\Vite')('resources/css/app.css'); ?>
+<title>Gestionnaire clients - factures</title>
 <h1 class="bg-red-800 text-white justify-center p-40 text-center text-4xl">Gestionnaire clients - factures</h1>
     <div class="mt-20 mb-4">
         <h2 class="text-3xl mb-2 ml-20">Mes factures</h2>

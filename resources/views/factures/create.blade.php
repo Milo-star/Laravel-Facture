@@ -21,10 +21,6 @@
         <input type="number" name="tva" id="tva">
     </div>
     <div>
-        <label for="total">Total :</label>
-        <input type="number" name="total" id="total">
-    </div>
-    <div>
         <label for="client">Client :</label>
         <input type="text" name="client" id="client">
     </div>

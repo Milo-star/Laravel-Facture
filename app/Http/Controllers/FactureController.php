@@ -34,27 +34,31 @@ class FactureController extends Controller
             'tva' => 'required',
             'price' => 'required',
         ]);
-
+    
         // Trouver la facture à mettre à jour
         $facture = Facture::find($id);
-
+    
         if (!$facture) {
             abort(404);
         }
-
+    
         // Mettre à jour les données de la facture
         $facture->reference = $validatedData['reference'];
         $facture->titre = $validatedData['titre'];
         $facture->description = $validatedData['description'];
         $facture->tva = $validatedData['tva'];
         $facture->price = $validatedData['price'];
-
+        $facture->total = $facture->price * (1 + $facture->tva / 100);
+    
         // Enregistrer les modifications dans la base de données
         $facture->save();
-
+    
         // Rediriger l'utilisateur vers la page de la liste des factures
         return redirect('/factures/index');
+        
     }
+    
+
 
     public function destroy($id)
     {
@@ -71,17 +75,25 @@ class FactureController extends Controller
 
     public function store(Request $request)
     {
+        // Vérifier si tous les champs ont été remplis
+        $fields = ['reference', 'titre', 'price', 'description', 'tva', 'client'];
+        foreach ($fields as $field) {
+            if (!$request->filled($field)) {
+                return redirect()->back()->withInput()->withErrors(['error' => 'Veuillez remplir tous les champs']);
+            }
+        }
+    
+        // Créer la facture
         $facture = new Facture();
         $facture->reference = $request->input('reference');
         $facture->titre = $request->input('titre');
         $facture->price = $request->input('price');
         $facture->description = $request->input('description');
         $facture->tva = $request->input('tva');
-        $facture->total = $request->input('total');
+        $facture->total = $facture->getTotalAttribute();
         $facture->client = $request->input('client');
         $facture->save();
-
-        return redirect()->route('factures.index')->with('success', 'La facture a été crée !');
+    
+        return redirect()->route('factures.index')->with('success', 'La facture a été créée !');
     }
-
 }
