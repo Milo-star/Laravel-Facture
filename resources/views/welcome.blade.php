@@ -1,4 +1,5 @@
 @vite('resources/css/app.css')
+<title>Gestionnaire clients - Welcome</title>
 <div> 
     <h1 class="bg-red-800 p-40 text-4xl text-center text-white">Gestionnaire clients - factures</h1>
 </div>
