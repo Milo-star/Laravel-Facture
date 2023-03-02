@@ -22,12 +22,18 @@
             <td>{{ $facture->id }}</td>
             <td>{{ $facture->reference }}</td>
             <td>{{ $facture->titre }}</td>
-            <td>{{ $facture->price }}</td>
-            <td>{{ $facture->tva }}</td>
-            <td>{{ $facture->total }}</td>
+            <td>{{ $facture->price }}€</td>
+            <td>{{ $facture->tva }}%</td>
+            <td>{{ $facture->total }}€</td>
             <td>{{ $facture->client }}</td>
             <td><a href="{{ route('factures.edit', $facture->id) }}">Modifier</a></td>
-            <td><a href="#">Supprimer</a></td>
+            <td>
+                <form action="{{ route('factures.destroy', $facture->id) }}" method="POST">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit">Supprimer</button>
+                </form>
+            </td>
         </tr>
         @endforeach
     </tbody>

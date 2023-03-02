@@ -12,7 +12,7 @@ class FactureController extends Controller
         return view('welcome');
     }
 
-    public function allClients()
+    public function allFactures()
     {
         $factures = Facture::all();
         return view('factures.index', ['factures' => $factures]);
@@ -34,27 +34,54 @@ class FactureController extends Controller
             'tva' => 'required',
             'price' => 'required',
         ]);
-    
+
         // Trouver la facture à mettre à jour
         $facture = Facture::find($id);
-    
+
         if (!$facture) {
             abort(404);
         }
-    
+
         // Mettre à jour les données de la facture
         $facture->reference = $validatedData['reference'];
         $facture->titre = $validatedData['titre'];
         $facture->description = $validatedData['description'];
         $facture->tva = $validatedData['tva'];
         $facture->price = $validatedData['price'];
-    
+
         // Enregistrer les modifications dans la base de données
         $facture->save();
-    
+
         // Rediriger l'utilisateur vers la page de la liste des factures
         return redirect('/factures/index');
     }
-    
+
+    public function destroy($id)
+    {
+        $invoice = Facture::findOrFail($id);
+        $invoice->delete();
+
+        return redirect()->route('factures.index')->with('success', 'La facture a été supprimée.');
+    }
+
+    public function create()
+    {
+        return view('factures.create');
+    }
+
+    public function store(Request $request)
+    {
+        $facture = new Facture();
+        $facture->reference = $request->input('reference');
+        $facture->titre = $request->input('titre');
+        $facture->price = $request->input('price');
+        $facture->description = $request->input('description');
+        $facture->tva = $request->input('tva');
+        $facture->total = $request->input('total');
+        $facture->client = $request->input('client');
+        $facture->save();
+
+        return redirect()->route('factures.index')->with('success', 'La facture a été crée !');
+    }
 
 }
